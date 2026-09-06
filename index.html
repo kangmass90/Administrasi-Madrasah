@@ -1,148 +1,1076 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administrasi Kelas</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administrasi Kelas</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      background: #f4f6f8;
-      color: #222;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #222;
+}
 
-    header {
-      background: #2563eb;
-      color: white;
-      padding: 25px 20px;
-      text-align: center;
-    }
+header {
+  background: #2563eb;
+  color: white;
+  padding: 25px 15px;
+  text-align: center;
+}
 
-    header h1 {
-      margin-bottom: 8px;
-    }
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
 
-    .container {
-      max-width: 900px;
-      margin: 25px auto;
-      padding: 0 15px;
-    }
+header p {
+  margin: 10px 0 0;
+  font-size: 17px;
+}
 
-    .welcome {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
 
-    .menu {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-    }
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+}
 
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      transition: 0.2s;
-    }
+h2 {
+  margin-top: 0;
+}
 
-    .card:hover {
-      transform: translateY(-3px);
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 15px;
+}
 
-    .card .icon {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
+.menu {
+  cursor: pointer;
+  text-align: center;
+  transition: .2s;
+}
 
-    .card h3 {
-      margin-bottom: 8px;
-    }
+.menu:hover {
+  transform: translateY(-3px);
+}
 
-    .card p {
-      color: #666;
-      font-size: 14px;
-    }
+.icon {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
 
-    footer {
-      text-align: center;
-      padding: 25px;
-      margin-top: 30px;
-      color: #777;
-    }
-  </style>
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 11px 15px;
+  cursor: pointer;
+  font-size: 15px;
+  margin: 4px;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+}
+
+.btn-success {
+  background: #16a34a;
+  color: white;
+}
+
+.btn-danger {
+  background: #dc2626;
+  color: white;
+}
+
+.btn-secondary {
+  background: #64748b;
+  color: white;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin: 7px 0 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  font-size: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background: #2563eb;
+  color: white;
+}
+
+.badge {
+  display: inline-block;
+  padding: 7px 12px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border-radius: 20px;
+  margin: 3px;
+}
+
+.hidden {
+  display: none;
+}
+
+.stat {
+  text-align: center;
+  padding: 20px;
+  border-radius: 15px;
+  background: #eff6ff;
+}
+
+.stat strong {
+  display: block;
+  font-size: 30px;
+  color: #2563eb;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+}
+
+nav button {
+  white-space: nowrap;
+}
+
+.alert {
+  padding: 12px;
+  background: #fef3c7;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+@media(max-width:600px) {
+  header h1 {
+    font-size: 25px;
+  }
+
+  .container {
+    padding: 12px;
+  }
+
+  table {
+    font-size: 13px;
+  }
+
+  th, td {
+    padding: 7px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>📚 Administrasi Kelas</h1>
-    <p>Selamat datang di sistem administrasi kelas</p>
-  </header>
+<header>
+  <h1>📚 Administrasi Kelas</h1>
+  <p>Sistem Administrasi Kelas & Rombel</p>
+</header>
 
-  <div class="container">
+<nav>
+  <button class="btn-primary" onclick="showPage('dashboard')">🏠 Dashboard</button>
+  <button class="btn-primary" onclick="showPage('kelas')">🏫 Kelas/Rombel</button>
+  <button class="btn-primary" onclick="showPage('siswa')">👨‍🎓 Siswa</button>
+  <button class="btn-primary" onclick="showPage('absensi')">✅ Absensi</button>
+  <button class="btn-primary" onclick="showPage('jadwal')">📚 Jadwal</button>
+</nav>
 
-    <div class="welcome">
-      <h2>Dashboard Kelas</h2>
-      <p>Kelola data administrasi kelas dengan mudah.</p>
-    </div>
+<div class="container">
 
-    <div class="menu">
+<!-- DASHBOARD -->
+<section id="dashboard">
 
-      <div class="card">
-        <div class="icon">👨‍🎓</div>
-        <h3>Data Siswa</h3>
-        <p>Kelola data siswa di dalam kelas.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">✅</div>
-        <h3>Absensi</h3>
-        <p>Catat dan pantau kehadiran siswa.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">📖</div>
-        <h3>Jadwal Pelajaran</h3>
-        <p>Lihat jadwal pelajaran kelas.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">📝</div>
-        <h3>Nilai Siswa</h3>
-        <p>Kelola data nilai siswa.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">📅</div>
-        <h3>Agenda Kelas</h3>
-        <p>Catat kegiatan dan agenda kelas.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">📊</div>
-        <h3>Laporan</h3>
-        <p>Lihat laporan administrasi kelas.</p>
-      </div>
-
-    </div>
+  <div class="card">
+    <h2>Dashboard Kelas</h2>
+    <p>
+      Selamat datang di sistem administrasi kelas.
+      Gunakan menu di atas untuk mengelola kelas, rombel, siswa,
+      absensi dan jadwal pelajaran.
+    </p>
   </div>
 
-  <footer>
-    <p>© 2026 Administrasi Kelas</p>
-  </footer>
+  <div class="grid">
+
+    <div class="card stat">
+      <strong id="jumlahKelas">0</strong>
+      Kelas / Rombel
+    </div>
+
+    <div class="card stat">
+      <strong id="jumlahSiswa">0</strong>
+      Total Siswa
+    </div>
+
+    <div class="card stat">
+      <strong id="jumlahHadir">0</strong>
+      Kehadiran Hari Ini
+    </div>
+
+  </div>
+
+  <div class="grid">
+
+    <div class="card menu" onclick="showPage('kelas')">
+      <div class="icon">🏫</div>
+      <h2>Kelas & Rombel</h2>
+      <p>Kelola beberapa kelas dan rombel.</p>
+    </div>
+
+    <div class="card menu" onclick="showPage('siswa')">
+      <div class="icon">👨‍🎓</div>
+      <h2>Data Siswa</h2>
+      <p>Kelola siswa berdasarkan rombel.</p>
+    </div>
+
+    <div class="card menu" onclick="showPage('absensi')">
+      <div class="icon">✅</div>
+      <h2>Absensi</h2>
+      <p>Catat kehadiran siswa.</p>
+    </div>
+
+    <div class="card menu" onclick="showPage('jadwal')">
+      <div class="icon">📚</div>
+      <h2>Jadwal Pelajaran</h2>
+      <p>Kelola jadwal setiap rombel.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- KELAS -->
+<section id="kelas" class="hidden">
+
+  <div class="card">
+    <h2>🏫 Kelas & Rombel</h2>
+
+    <label>Nama Kelas</label>
+    <input id="inputKelas" placeholder="Contoh: VII">
+
+    <label>Nama Rombel</label>
+    <input id="inputRombel" placeholder="Contoh: VII A">
+
+    <button class="btn-success" onclick="tambahKelas()">
+      ➕ Tambah Kelas/Rombel
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>Daftar Kelas/Rombel</h2>
+
+    <div id="daftarKelas"></div>
+  </div>
+
+</section>
+
+
+<!-- SISWA -->
+<section id="siswa" class="hidden">
+
+  <div class="card">
+
+    <h2>👨‍🎓 Data Siswa</h2>
+
+    <label>Pilih Rombel</label>
+    <select id="selectSiswaRombel" onchange="tampilkanSiswa()"></select>
+
+    <hr>
+
+    <label>Nama Siswa</label>
+    <input id="inputNamaSiswa" placeholder="Nama lengkap">
+
+    <label>NIS / NISN</label>
+    <input id="inputNis" placeholder="Nomor siswa">
+
+    <button class="btn-success" onclick="tambahSiswa()">
+      ➕ Tambah Siswa
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <h2>Daftar Siswa</h2>
+
+    <div id="daftarSiswa"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ABSENSI -->
+<section id="absensi" class="hidden">
+
+  <div class="card">
+
+    <h2>✅ Absensi Siswa</h2>
+
+    <label>Pilih Rombel</label>
+    <select id="selectAbsensiRombel" onchange="tampilkanAbsensi()"></select>
+
+    <label>Tanggal</label>
+    <input type="date" id="tanggalAbsensi" onchange="tampilkanAbsensi()">
+
+  </div>
+
+  <div class="card">
+
+    <div id="daftarAbsensi"></div>
+
+  </div>
+
+</section>
+
+
+<!-- JADWAL -->
+<section id="jadwal" class="hidden">
+
+  <div class="card">
+
+    <h2>📚 Jadwal Pelajaran</h2>
+
+    <label>Pilih Rombel</label>
+    <select id="selectJadwalRombel"></select>
+
+    <label>Hari</label>
+    <select id="inputHari">
+      <option>Senin</option>
+      <option>Selasa</option>
+      <option>Rabu</option>
+      <option>Kamis</option>
+      <option>Jumat</option>
+      <option>Sabtu</option>
+    </select>
+
+    <label>Jam</label>
+    <input id="inputJam" placeholder="Contoh: 07.00 - 08.00">
+
+    <label>Mata Pelajaran</label>
+    <input id="inputMapel" placeholder="Contoh: Matematika">
+
+    <label>Guru</label>
+    <input id="inputGuru" placeholder="Nama guru">
+
+    <button class="btn-success" onclick="tambahJadwal()">
+      ➕ Tambah Jadwal
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <h2>Daftar Jadwal</h2>
+
+    <div id="daftarJadwal"></div>
+
+  </div>
+
+</section>
+
+</div>
+
+
+<script>
+
+let data = JSON.parse(localStorage.getItem("administrasiKelas")) || {
+  kelas: [],
+  siswa: [],
+  absensi: [],
+  jadwal: []
+};
+
+
+function simpan() {
+  localStorage.setItem(
+    "administrasiKelas",
+    JSON.stringify(data)
+  );
+}
+
+
+function showPage(page) {
+
+  const pages = [
+    "dashboard",
+    "kelas",
+    "siswa",
+    "absensi",
+    "jadwal"
+  ];
+
+  pages.forEach(function(p) {
+    document.getElementById(p).classList.add("hidden");
+  });
+
+  document.getElementById(page).classList.remove("hidden");
+
+  refresh();
+
+}
+
+
+function refresh() {
+
+  document.getElementById("jumlahKelas").innerText =
+    data.kelas.length;
+
+  document.getElementById("jumlahSiswa").innerText =
+    data.siswa.length;
+
+  updateSelectKelas();
+  tampilkanKelas();
+  tampilkanSiswa();
+  tampilkanAbsensi();
+  tampilkanJadwal();
+
+}
+
+
+function tambahKelas() {
+
+  const kelas =
+    document.getElementById("inputKelas").value.trim();
+
+  const rombel =
+    document.getElementById("inputRombel").value.trim();
+
+  if (!kelas || !rombel) {
+    alert("Silakan isi kelas dan rombel.");
+    return;
+  }
+
+  const sudahAda = data.kelas.some(
+    x => x.rombel.toLowerCase() === rombel.toLowerCase()
+  );
+
+  if (sudahAda) {
+    alert("Rombel tersebut sudah ada.");
+    return;
+  }
+
+  data.kelas.push({
+    id: Date.now(),
+    kelas: kelas,
+    rombel: rombel
+  });
+
+  simpan();
+
+  document.getElementById("inputKelas").value = "";
+  document.getElementById("inputRombel").value = "";
+
+  refresh();
+
+  alert("Kelas/Rombel berhasil ditambahkan.");
+
+}
+
+
+function tampilkanKelas() {
+
+  const area = document.getElementById("daftarKelas");
+
+  if (data.kelas.length === 0) {
+
+    area.innerHTML =
+      "<p>Belum ada kelas/rombel.</p>";
+
+    return;
+  }
+
+  area.innerHTML = data.kelas.map(function(k) {
+
+    const jumlah =
+      data.siswa.filter(s => s.rombelId === k.id).length;
+
+    return `
+      <div class="card">
+        <span class="badge">${k.kelas}</span>
+        <span class="badge">${k.rombel}</span>
+
+        <p>
+          👨‍🎓 ${jumlah} siswa
+        </p>
+
+        <button class="btn-danger"
+          onclick="hapusKelas(${k.id})">
+          🗑️ Hapus
+        </button>
+      </div>
+    `;
+
+  }).join("");
+
+}
+
+
+function hapusKelas(id) {
+
+  if (!confirm("Hapus kelas/rombel ini?")) return;
+
+  data.kelas =
+    data.kelas.filter(k => k.id !== id);
+
+  data.siswa =
+    data.siswa.filter(s => s.rombelId !== id);
+
+  data.jadwal =
+    data.jadwal.filter(j => j.rombelId !== id);
+
+  data.absensi =
+    data.absensi.filter(a => a.rombelId !== id);
+
+  simpan();
+
+  refresh();
+
+}
+
+
+function updateSelectKelas() {
+
+  const selects = [
+    "selectSiswaRombel",
+    "selectAbsensiRombel",
+    "selectJadwalRombel"
+  ];
+
+  selects.forEach(function(id) {
+
+    const select = document.getElementById(id);
+
+    if (!select) return;
+
+    const nilaiLama = select.value;
+
+    select.innerHTML =
+      `<option value="">-- Pilih Rombel --</option>` +
+      data.kelas.map(function(k) {
+        return `
+          <option value="${k.id}">
+            ${k.kelas} - ${k.rombel}
+          </option>
+        `;
+      }).join("");
+
+    if (
+      nilaiLama &&
+      data.kelas.some(k => String(k.id) === nilaiLama)
+    ) {
+      select.value = nilaiLama;
+    }
+
+  });
+
+}
+
+
+function tambahSiswa() {
+
+  const rombelId =
+    Number(document.getElementById("selectSiswaRombel").value);
+
+  const nama =
+    document.getElementById("inputNamaSiswa").value.trim();
+
+  const nis =
+    document.getElementById("inputNis").value.trim();
+
+  if (!rombelId) {
+    alert("Pilih rombel terlebih dahulu.");
+    return;
+  }
+
+  if (!nama) {
+    alert("Nama siswa wajib diisi.");
+    return;
+  }
+
+  data.siswa.push({
+    id: Date.now(),
+    rombelId: rombelId,
+    nama: nama,
+    nis: nis
+  });
+
+  simpan();
+
+  document.getElementById("inputNamaSiswa").value = "";
+  document.getElementById("inputNis").value = "";
+
+  tampilkanSiswa();
+
+  refresh();
+
+}
+
+
+function tampilkanSiswa() {
+
+  const area =
+    document.getElementById("daftarSiswa");
+
+  const select =
+    document.getElementById("selectSiswaRombel");
+
+  if (!select || !area) return;
+
+  const rombelId =
+    Number(select.value);
+
+  if (!rombelId) {
+    area.innerHTML =
+      "<p>Pilih rombel untuk melihat siswa.</p>";
+    return;
+  }
+
+  const siswa =
+    data.siswa.filter(
+      s => s.rombelId === rombelId
+    );
+
+  if (siswa.length === 0) {
+    area.innerHTML =
+      "<p>Belum ada siswa pada rombel ini.</p>";
+    return;
+  }
+
+  area.innerHTML = `
+    <table>
+      <tr>
+        <th>No</th>
+        <th>NIS</th>
+        <th>Nama</th>
+        <th>Aksi</th>
+      </tr>
+
+      ${siswa.map(function(s, index) {
+
+        return `
+          <tr>
+            <td>${index + 1}</td>
+            <td>${s.nis || "-"}</td>
+            <td>${s.nama}</td>
+            <td>
+              <button class="btn-danger"
+                onclick="hapusSiswa(${s.id})">
+                🗑️
+              </button>
+            </td>
+          </tr>
+        `;
+
+      }).join("")}
+
+    </table>
+  `;
+
+}
+
+
+function hapusSiswa(id) {
+
+  if (!confirm("Hapus siswa ini?")) return;
+
+  data.siswa =
+    data.siswa.filter(s => s.id !== id);
+
+  data.absensi =
+    data.absensi.filter(a => a.siswaId !== id);
+
+  simpan();
+
+  refresh();
+
+}
+
+
+function tampilkanAbsensi() {
+
+  const area =
+    document.getElementById("daftarAbsensi");
+
+  const select =
+    document.getElementById("selectAbsensiRombel");
+
+  const tanggal =
+    document.getElementById("tanggalAbsensi").value;
+
+  if (!tanggal) {
+    area.innerHTML =
+      "<p>Pilih tanggal absensi.</p>";
+    return;
+  }
+
+  const rombelId =
+    Number(select.value);
+
+  if (!rombelId) {
+    area.innerHTML =
+      "<p>Pilih rombel terlebih dahulu.</p>";
+    return;
+  }
+
+  const siswa =
+    data.siswa.filter(
+      s => s.rombelId === rombelId
+    );
+
+  if (siswa.length === 0) {
+    area.innerHTML =
+      "<p>Belum ada siswa.</p>";
+    return;
+  }
+
+  area.innerHTML = `
+    <table>
+      <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Status</th>
+      </tr>
+
+      ${siswa.map(function(s, index) {
+
+        const dataAbsensi =
+          data.absensi.find(
+            a =>
+              a.siswaId === s.id &&
+              a.tanggal === tanggal
+          );
+
+        const status =
+          dataAbsensi
+          ? dataAbsensi.status
+          : "";
+
+        return `
+          <tr>
+            <td>${index + 1}</td>
+            <td>${s.nama}</td>
+
+            <td>
+              <select
+                onchange="simpanAbsensi(
+                  ${s.id},
+                  ${rombelId},
+                  '${tanggal}',
+                  this.value
+                )">
+
+                <option value=""
+                  ${status === "" ? "selected" : ""}>
+                  -
+                </option>
+
+                <option value="Hadir"
+                  ${status === "Hadir" ? "selected" : ""}>
+                  Hadir
+                </option>
+
+                <option value="Izin"
+                  ${status === "Izin" ? "selected" : ""}>
+                  Izin
+                </option>
+
+                <option value="Sakit"
+                  ${status === "Sakit" ? "selected" : ""}>
+                  Sakit
+                </option>
+
+                <option value="Alpa"
+                  ${status === "Alpa" ? "selected" : ""}>
+                  Alpa
+                </option>
+
+              </select>
+            </td>
+
+          </tr>
+        `;
+
+      }).join("")}
+
+    </table>
+  `;
+
+}
+
+
+function simpanAbsensi(
+  siswaId,
+  rombelId,
+  tanggal,
+  status
+) {
+
+  const index =
+    data.absensi.findIndex(
+      a =>
+        a.siswaId === siswaId &&
+        a.tanggal === tanggal
+    );
+
+  if (!status) {
+
+    if (index !== -1) {
+      data.absensi.splice(index, 1);
+    }
+
+  } else {
+
+    if (index === -1) {
+
+      data.absensi.push({
+        siswaId,
+        rombelId,
+        tanggal,
+        status
+      });
+
+    } else {
+
+      data.absensi[index].status =
+        status;
+
+    }
+
+  }
+
+  simpan();
+
+  hitungHadir();
+
+}
+
+
+function hitungHadir() {
+
+  const today =
+    new Date().toISOString().split("T")[0];
+
+  const hadir =
+    data.absensi.filter(
+      a =>
+        a.tanggal === today &&
+        a.status === "Hadir"
+    ).length;
+
+  document.getElementById(
+    "jumlahHadir"
+  ).innerText = hadir;
+
+}
+
+
+function tambahJadwal() {
+
+  const rombelId =
+    Number(document.getElementById(
+      "selectJadwalRombel"
+    ).value);
+
+  const hari =
+    document.getElementById("inputHari").value;
+
+  const jam =
+    document.getElementById("inputJam").value.trim();
+
+  const mapel =
+    document.getElementById("inputMapel").value.trim();
+
+  const guru =
+    document.getElementById("inputGuru").value.trim();
+
+  if (!rombelId) {
+    alert("Pilih rombel.");
+    return;
+  }
+
+  if (!jam || !mapel) {
+    alert("Jam dan mata pelajaran wajib diisi.");
+    return;
+  }
+
+  data.jadwal.push({
+    id: Date.now(),
+    rombelId,
+    hari,
+    jam,
+    mapel,
+    guru
+  });
+
+  simpan();
+
+  document.getElementById("inputJam").value = "";
+  document.getElementById("inputMapel").value = "";
+  document.getElementById("inputGuru").value = "";
+
+  tampilkanJadwal();
+
+}
+
+
+function tampilkanJadwal() {
+
+  const area =
+    document.getElementById("daftarJadwal");
+
+  const select =
+    document.getElementById("selectJadwalRombel");
+
+  if (!select || !area) return;
+
+  const rombelId =
+    Number(select.value);
+
+  if (!rombelId) {
+    area.innerHTML =
+      "<p>Pilih rombel untuk melihat jadwal.</p>";
+    return;
+  }
+
+  const jadwal =
+    data.jadwal.filter(
+      j => j.rombelId === rombelId
+    );
+
+  if (jadwal.length === 0) {
+    area.innerHTML =
+      "<p>Belum ada jadwal.</p>";
+    return;
+  }
+
+  const urutanHari = [
+    "Senin",
+    "Selasa",
+    "Rabu",
+    "Kamis",
+    "Jumat",
+    "Sabtu"
+  ];
+
+  jadwal.sort(function(a,b) {
+    return (
+      urutanHari.indexOf(a.hari) -
+      urutanHari.indexOf(b.hari)
+    );
+  });
+
+  area.innerHTML = `
+    <table>
+      <tr>
+        <th>Hari</th>
+        <th>Jam</th>
+        <th>Mapel</th>
+        <th>Guru</th>
+        <th>Aksi</th>
+      </tr>
+
+      ${jadwal.map(function(j) {
+
+        return `
+          <tr>
+            <td>${j.hari}</td>
+            <td>${j.jam}</td>
+            <td>${j.mapel}</td>
+            <td>${j.guru || "-"}</td>
+            <td>
+              <button class="btn-danger"
+                onclick="hapusJadwal(${j.id})">
+                🗑️
+              </button>
+            </td>
+          </tr>
+        `;
+
+      }).join("")}
+
+    </table>
+  `;
+
+}
+
+
+function hapusJadwal(id) {
+
+  if (!confirm("Hapus jadwal ini?")) return;
+
+  data.jadwal =
+    data.jadwal.filter(
+      j => j.id !== id
+    );
+
+  simpan();
+
+  tampilkanJadwal();
+
+}
+
+
+function setTanggalHariIni() {
+
+  const tanggal =
+    document.getElementById(
+      "tanggalAbsensi"
+    );
+
+  const today =
+    new Date().toISOString().split("T")[0];
+
+  tanggal.value = today;
+
+}
+
+
+setTanggalHariIni();
+
+refresh();
+
+</script>
 
 </body>
 </html>
