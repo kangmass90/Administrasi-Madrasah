@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrasi Kelas</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    header {
+      background: #2563eb;
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin-bottom: 8px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 25px auto;
+      padding: 0 15px;
+    }
+
+    .welcome {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .card .icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      margin-top: 30px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>📚 Administrasi Kelas</h1>
+    <p>Selamat datang di sistem administrasi kelas</p>
+  </header>
+
+  <div class="container">
+
+    <div class="welcome">
+      <h2>Dashboard Kelas</h2>
+      <p>Kelola data administrasi kelas dengan mudah.</p>
+    </div>
+
+    <div class="menu">
+
+      <div class="card">
+        <div class="icon">👨‍🎓</div>
+        <h3>Data Siswa</h3>
+        <p>Kelola data siswa di dalam kelas.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">✅</div>
+        <h3>Absensi</h3>
+        <p>Catat dan pantau kehadiran siswa.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📖</div>
+        <h3>Jadwal Pelajaran</h3>
+        <p>Lihat jadwal pelajaran kelas.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📝</div>
+        <h3>Nilai Siswa</h3>
+        <p>Kelola data nilai siswa.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📅</div>
+        <h3>Agenda Kelas</h3>
+        <p>Catat kegiatan dan agenda kelas.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📊</div>
+        <h3>Laporan</h3>
+        <p>Lihat laporan administrasi kelas.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Administrasi Kelas</p>
+  </footer>
+
+</body>
+</html>
