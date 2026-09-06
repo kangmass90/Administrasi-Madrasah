@@ -1,2 +1,2 @@
 # Administrasi Madrasah
-Website Administrasi Kelas MTs At Tauhid 
+Website Administrasi MTs At Tauhid 
